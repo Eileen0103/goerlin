@@ -80,3 +80,21 @@ html:has(#stay-lightbox[open]){overflow:hidden}
  .story-copy h3{margin-top:8px}
  .story-photo img{border-radius:13px}
 }
+
+/* Market comparison stays inside the page and the detail dialog. */
+.market-picks{margin-top:34px;min-width:0}
+.market-price-note{font-size:13px;line-height:1.9;color:#687467}
+.market-table-scroll{max-width:100%;overflow-x:auto;border:1px solid #dce3d7;border-radius:12px;margin:20px 0;-webkit-overflow-scrolling:touch}
+.market-table{width:100%;min-width:650px;border-collapse:collapse;font-size:14px;text-align:left;line-height:1.8}
+.market-table th,.market-table td{padding:15px 13px;vertical-align:top;border-bottom:1px solid #e1e7db}
+.market-table thead{background:#e8eee1;color:#194d3b}
+.market-table th[scope=row]{width:19%;font-weight:700;color:#194d3b}
+.market-table td:nth-child(2){width:28%}
+.market-table td:nth-child(3){width:24%}
+.market-table td:nth-child(4){width:29%}
+.market-table small{display:block;font-size:11px;color:#6a7569;line-height:1.7;margin-top:5px}
+.market-table a{font-size:12px}
+.market-table tbody tr:last-child>*{border-bottom:0}
+.market-table tbody tr:nth-child(even){background:#f4f5ec}
+.detail-main,.detail-copy{min-width:0}
+@media(max-width:760px){.market-table{font-size:13px}.market-table th,.market-table td{padding:12px 10px}}
