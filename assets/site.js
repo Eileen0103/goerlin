@@ -14,9 +14,6 @@ topButton?.addEventListener('click',()=>{window.scrollTo({top:0,behavior:window.
 const filterButtons=document.querySelectorAll('[data-season-filter]');
 const seasonCards=document.querySelectorAll('[data-season]');
 filterButtons.forEach(button=>button.addEventListener('click',()=>{const season=button.dataset.seasonFilter;filterButtons.forEach(item=>item.setAttribute('aria-pressed',String(item===button)));seasonCards.forEach(card=>{card.hidden=season!=='all'&&card.dataset.season!==season;});const status=document.querySelector('.filter-status');if(status)status.textContent=season==='all'?'全年核心行程不變，四季各有不同亮點。':'正在查看'+button.textContent+'；點選景點卡片可閱讀完整介紹。';}));
-const pastry=document.querySelector('#include-pastry');
-pastry?.addEventListener('change',()=>{const each=4965+(pastry.checked?380:0);document.querySelector('#estimated-person').textContent='NT$ '+each.toLocaleString('en-US');document.querySelector('#estimated-group').textContent='NT$ '+(each*20).toLocaleString('en-US');});
-
 // Native dialogs keep visitors on their original card and preserve page position.
 const detailDialog=document.querySelector('#detail-modal');
 if(detailDialog&&typeof detailDialog.showModal==='function'){
@@ -62,6 +59,7 @@ if(galleryData){
  lightbox.addEventListener('click',event=>{if(event.target===lightbox){const bounds=lightbox.getBoundingClientRect();if(event.clientX<bounds.left||event.clientX>bounds.right||event.clientY<bounds.top||event.clientY>bounds.bottom)lightbox.close();}});
  lightbox.addEventListener('keydown',event=>{if(event.key==='ArrowLeft'||event.key==='ArrowRight'){event.preventDefault();stopPlayback();displaySlide(current+(event.key==='ArrowLeft'?-1:1));}});
  document.addEventListener('visibilitychange',()=>{if(document.hidden)stopPlayback();});
+ displaySlide(0);
 }
 // Delivery remains inactive until an approved receiving endpoint is configured.
 const inquiryForm=document.querySelector('#group-plan-form');
@@ -95,3 +93,14 @@ if(inquiryForm){
  fields.forEach(field=>{field.addEventListener('blur',()=>{if(field.name==='email'||field.name==='contactName')field.value=field.value.trim();validateInquiryField(field);});field.addEventListener('input',()=>validateInquiryField(field,field.getAttribute('aria-invalid')==='true'));field.addEventListener('change',()=>validateInquiryField(field));field.addEventListener('invalid',()=>validateInquiryField(field));});
  inquiryForm.addEventListener('submit',()=>fields.forEach(field=>validateInquiryField(field)),{capture:true});
 }
+
+// Travel highlights are grouped into four accessible, in-place panels.
+const discoverTabs=Array.from(document.querySelectorAll('[data-discover-tab]'));
+function selectDiscover(tab,focus=false){
+ discoverTabs.forEach(item=>{const active=item===tab;item.setAttribute('aria-selected',String(active));item.tabIndex=active?0:-1;document.getElementById(item.getAttribute('aria-controls')).hidden=!active;});
+ if(focus)tab.focus();
+}
+discoverTabs.forEach((tab,index)=>{
+ tab.addEventListener('click',()=>selectDiscover(tab));
+ tab.addEventListener('keydown',event=>{let next;if(event.key==='ArrowRight')next=(index+1)%discoverTabs.length;if(event.key==='ArrowLeft')next=(index+discoverTabs.length-1)%discoverTabs.length;if(event.key==='Home')next=0;if(event.key==='End')next=discoverTabs.length-1;if(next!==undefined){event.preventDefault();selectDiscover(discoverTabs[next],true);}});
+});
