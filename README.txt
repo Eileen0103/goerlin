@@ -1,10 +1,10 @@
-餓，林時起意！GitHub相容版 v18｜2026-10-24
-更新：景點文化背景、餐廳故事、農場遊逛提醒與市場10項傳統早午餐選擇。
-早餐價格分有年份的食記參考價與規劃預算，不是所有價格都為店家現行報價。
+餓，林時起意！GitHub相容版 v19｜2026-10-24
+蕎麥麵改自由加購約300/人；已列小計3805/人，20人76100。
+補助未核定：主目標2900需18100/團，進階2800需20100/團支持，均非現售完整團費。
 
-請先解壓縮，將所有HTML與assets資料夾一併覆蓋到原本網站目錄，再提交與push。
-index.html要直接位於GitHub Pages發布目錄，不要多包一層資料夾。
-保留原本.git、CNAME與GitHub設定。
-index.html為旅客版；proposal.html為提案版。
-每頁HTML內含CSS與JavaScript，不需安裝或build；assets圖片仍須完整上傳。
-assets/style.css和site.js為編輯參考；修改共用檔後需重新匯出內嵌版。
+解壓縮後，將全部HTML與assets資料夾覆蓋到原本網站目錄，再git add、commit與push。
+index.html須在GitHub Pages發布目錄，不要多包一層資料夾。
+保留.git、CNAME及原GitHub設定。
+index.html為旅客版，proposal.html為提案版。
+HTML內含CSS與JavaScript，不需安裝或build；assets圖片仍須一併上傳。
+共用CSS/JS也保留作編輯參考，修改後須重新匯出內嵌版才生效。
